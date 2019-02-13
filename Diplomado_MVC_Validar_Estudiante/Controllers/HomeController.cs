@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Diplomado_MVC_Validar_Estudiante.Models;
 
 namespace Diplomado_MVC_Validar_Estudiante.Controllers
 {
@@ -10,7 +11,17 @@ namespace Diplomado_MVC_Validar_Estudiante.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Estudiante est = new Estudiante();
+            return View(est);
+        }
+
+        [HttpPost]
+        public ActionResult Index(Estudiante est)
+        {
+            if (ModelState.IsValid)
+                return View("Correcto");
+            else
+                return View(est);
         }
 
         public ActionResult About()
